@@ -10,6 +10,10 @@ on:
       - 'scripts/helm-docs.sh'
       - 'Makefile'
       - '.github/workflows/helm-docs.yml'
+  push:
+    push:
+    branches:
+      - testing/helm-docs
 
 permissions:
   contents: read
