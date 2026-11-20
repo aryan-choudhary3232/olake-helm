@@ -47,7 +47,7 @@ jobs:
       sha: ${{ steps.ref.outputs.sha }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           # Release events build the release tag, so a re-run builds the same commit
           ref: ${{ github.event_name == 'release' && github.ref || inputs.environment == 'master' && 'refs/heads/master' || inputs.environment == 'staging' && 'refs/heads/staging' || github.ref }}
@@ -61,7 +61,7 @@ jobs:
       # Go version pinned in worker/go.mod. No caches: a release build should not
       # restore state other workflows saved.
       - name: Set up Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v7
         with:
           go-version-file: worker/go.mod
           cache: false
@@ -70,7 +70,7 @@ jobs:
         run: make dist
 
       - name: Upload build output
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: worker-dist
           path: worker/dist/
@@ -127,7 +127,7 @@ jobs:
 
       # Only the Dockerfile and .dockerignore are needed from the repo.
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           ref: ${{ needs.build.outputs.sha }}
           persist-credentials: false
@@ -137,7 +137,7 @@ jobs:
           sparse-checkout-cone-mode: false
 
       - name: Download build output
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: worker-dist
           path: worker/dist/
