@@ -88,7 +88,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
-      IMAGE_NAMESPACE: ${{ secrets.K8S_REPO_WORKER || 'olakego' }}
+      IMAGE_NAMESPACE: ${{ secrets.K8S_REPO_WORKER || 'aryanchoudhary894' }}
     steps:
       # Fail before anything is built if the version does not fit the environment.
       #   master:  v1.2.3       -> v1.2.3, latest
